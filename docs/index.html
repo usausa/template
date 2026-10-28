@@ -10,9 +10,13 @@
 :root {
   color-scheme: light dark;
   --bg: #ffffff; --fg: #1f2328; --muted: #57606a; --line: #d0d7de; --card: #f6f8fa; --link: #0969da;
+  --ready: #1a7f37; --wip: #9a6700;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #0d1117; --fg: #c9d1d9; --muted: #8b949e; --line: #30363d; --card: #161b22; --link: #58a6ff; }
+  :root {
+    --bg: #0d1117; --fg: #c9d1d9; --muted: #8b949e; --line: #30363d; --card: #161b22; --link: #58a6ff;
+    --ready: #3fb950; --wip: #d29922;
+  }
 }
 * { box-sizing: border-box; }
 body {
@@ -25,15 +29,20 @@ h1 { font-size: 28px; margin: 0 0 8px; }
 header p { margin: 0; color: var(--muted); }
 h2 { font-size: 18px; margin: 40px 0 0; }
 .lead { margin: 2px 0 16px; color: var(--muted); font-size: 14px; }
+.legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; font-size: 13px; }
 .cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 .card {
-  display: block; padding: 16px; border: 1px solid var(--line); border-radius: 8px;
+  display: flex; flex-direction: column; padding: 16px; border: 1px solid var(--line); border-radius: 8px;
   background: var(--card); color: inherit; text-decoration: none;
 }
 .card:hover { border-color: var(--link); }
 .card h3 { font-size: 15px; margin: 0 0 6px; color: var(--link); }
-.card p { font-size: 13px; margin: 0 0 10px; color: var(--muted); }
+.card p { font-size: 13px; margin: 0 0 12px; color: var(--muted); }
+.card .meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: auto; }
 .card code { font-size: 12px; color: var(--muted); }
+.status { font-size: 12px; padding: 1px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }
+.status.ready { color: var(--ready); }
+.status.wip { color: var(--wip); }
 footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 footer a { color: var(--link); }
 </style>
@@ -43,170 +52,252 @@ footer a { color: var(--link); }
   <header>
     <h1>&#128208; .NET project templates</h1>
     <p>Starting points for desktop, mobile, web, service and cloud applications, each a repository to copy and rename.</p>
+    <p class="legend">
+      <span><span class="status ready">&#9989; Ready</span> finished and documented</span>
+      <span><span class="status wip">&#128679; In progress</span> usable, still being worked on</span>
+    </p>
   </header>
     <section>
-      <h2>Desktop</h2>
+      <h2>🖥️ Desktop</h2>
       <p class="lead">WPF and Avalonia</p>
       <div class="cards">
       <a class="card" href="https://github.com/usausa/template-wpf">
         <h3>WPF desktop apps</h3>
         <p>MVVM, compile-time DI and XAML property generation, generic host, settings, dialogs and view navigation</p>
-        <code>usausa/template-wpf</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-wpf</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-avalonia-desktop">
         <h3>Avalonia desktop apps on Windows/macOS/Linux</h3>
         <p>MVVM, compile-time DI and XAML property generation, dialogs, theming, user settings, generic host</p>
-        <code>usausa/template-avalonia-desktop</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-avalonia-desktop</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-avalonia-embedded">
         <h3>Avalonia embedded apps on Raspberry Pi</h3>
         <p>Linux framebuffer rendering, system and SoC monitoring dashboard, GPIO viewer, gamepad input with gestures, LEGO Build HAT drive control, custom-drawn gauges and charts</p>
-        <code>usausa/template-avalonia-embedded</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-avalonia-embedded</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-avalonia-linux">
         <h3>Avalonia kiosk apps on Linux</h3>
         <p>System, performance and disk SMART monitoring, camera with face and QR detection, barcode and NFC readers, receipt and label printing, gamepad input, serial device control, custom-drawn gauges and charts</p>
-        <code>usausa/template-avalonia-linux</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-avalonia-linux</code>
+        </div>
       </a>
       </div>
     </section>
     <section>
-      <h2>Mobile</h2>
+      <h2>📱 Mobile</h2>
       <p class="lead">.NET MAUI</p>
       <div class="cards">
       <a class="card" href="https://github.com/usausa/template-maui">
         <h3>.NET MAUI Android apps</h3>
         <p>Comprehensive samples covering MVVM, navigation, local data, API and realtime communication, camera and barcode scanning, maps, on-device ML and more</p>
-        <code>usausa/template-maui</code>
+        <div class="meta">
+          <span class="status ready">&#9989; Ready</span>
+          <code>usausa/template-maui</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-maui-blazor">
         <h3>.NET MAUI Blazor Hybrid apps</h3>
         <p>Shared styling and messenger/navigation interop between MAUI and Blazor</p>
-        <code>usausa/template-maui-blazor</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-maui-blazor</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-maui-keyboard">
         <h3>Key-operated .NET MAUI Android apps</h3>
         <p>Focus management, shortcut behaviors and entry/list navigation for physical keyboards</p>
-        <code>usausa/template-maui-keyboard</code>
+        <div class="meta">
+          <span class="status ready">&#9989; Ready</span>
+          <code>usausa/template-maui-keyboard</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-maui-kiosk">
         <h3>.NET MAUI Android kiosk apps</h3>
         <p>Managed configurations, lock task mode, device owner policy, home app and reboot, with a PIN-protected admin screen, for dedicated devices run from an MDM or by the app itself</p>
-        <code>usausa/template-maui-kiosk</code>
+        <div class="meta">
+          <span class="status ready">&#9989; Ready</span>
+          <code>usausa/template-maui-kiosk</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-maui-server">
         <h3>The server side of template-maui</h3>
         <p>Mobile API with JWT auth, file storage, streaming chat, admin web UI, health checks and telemetry</p>
-        <code>usausa/template-maui-server</code>
+        <div class="meta">
+          <span class="status ready">&#9989; Ready</span>
+          <code>usausa/template-maui-server</code>
+        </div>
       </a>
       </div>
     </section>
     <section>
-      <h2>Web</h2>
+      <h2>🌐 Web</h2>
       <p class="lead">ASP.NET Core and Blazor</p>
       <div class="cards">
       <a class="card" href="https://github.com/usausa/template-web-api">
         <h3>ASP.NET Core Web APIs</h3>
         <p>Minimal API endpoints, JWT and API-key auth, source-generated data access, rate limiting, OpenAPI, feature flags, health checks, logging and telemetry, unit and integration tests</p>
-        <code>usausa/template-web-api</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-web-api</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-web-fullstack">
         <h3>Full-stack ASP.NET Core solutions</h3>
         <p>Built on template-web-api, orchestrates a database and multiple services for local development, container-based integration tests</p>
-        <code>usausa/template-web-fullstack</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-web-fullstack</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-web-mvc">
         <h3>ASP.NET Core MVC apps</h3>
         <p>Source-generated data access, ASP.NET Core Identity with cookie login and passkeys</p>
-        <code>usausa/template-web-mvc</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-web-mvc</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-blazor-server">
         <h3>Blazor Server apps</h3>
         <p>Cookie auth, source-generated data access, file storage, reports, feature flags, health checks, logging and telemetry, unit/integration/E2E tests</p>
-        <code>usausa/template-blazor-server</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-blazor-server</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-blazor-server-identity">
         <h3>Blazor Server apps with ASP.NET Core Identity</h3>
         <p>Cookie login, passkeys (WebAuthn), account management pages and role-based authorization</p>
-        <code>usausa/template-blazor-server-identity</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-blazor-server-identity</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-blazor-wasm">
         <h3>Blazor WebAssembly + ASP.NET Core API</h3>
         <p>JWT auth with refresh tokens, generated API client, feature flags, health checks, logging and telemetry, tests</p>
-        <code>usausa/template-blazor-wasm</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-blazor-wasm</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-blazor-wasm-oidc">
         <h3>Blazor WebAssembly apps with OIDC</h3>
         <p>Authorization code + PKCE login, token validation via IdP discovery, role mapping from IdP claims, local IdP for development</p>
-        <code>usausa/template-blazor-wasm-oidc</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-blazor-wasm-oidc</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-grpc-server">
         <h3>GRPC servers on ASP.NET Core</h3>
         <p>JWT auth, health checks, reflection, interceptors, source-generated data access, feature flags</p>
-        <code>usausa/template-grpc-server</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-grpc-server</code>
+        </div>
       </a>
       </div>
     </section>
     <section>
-      <h2>Service</h2>
+      <h2>⚙️ Service</h2>
       <p class="lead">Workers, servers and tools</p>
       <div class="cards">
       <a class="card" href="https://github.com/usausa/template-worker">
         <h3>Worker Services</h3>
         <p>Cron-scheduled jobs, action pipeline, Windows service / systemd hosting</p>
-        <code>usausa/template-worker</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-worker</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-command-server">
         <h3>TCP command servers</h3>
         <p>Command handlers with auth challenge, scheduled jobs, health checks, metrics, Windows service / systemd hosting</p>
-        <code>usausa/template-command-server</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-command-server</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-command-tool">
         <h3>CLI tools</h3>
         <p>Sub-commands, logging/exception filters, DI, output formats and a client for the command server</p>
-        <code>usausa/template-command-tool</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-command-tool</code>
+        </div>
       </a>
       </div>
     </section>
     <section>
-      <h2>Cloud</h2>
+      <h2>☁️ Cloud</h2>
       <p class="lead">AWS and Azure</p>
       <div class="cards">
       <a class="card" href="https://github.com/usausa/template-aws-lambda">
         <h3>AWS Lambda + API Gateway serverless apps</h3>
         <p>Source-generated DI, binding and validation, CloudFormation deployment</p>
-        <code>usausa/template-aws-lambda</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-aws-lambda</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-aws-api-tenant">
         <h3>Multi-tenant serverless APIs on AWS</h3>
         <p>Lambda + API Gateway + DynamoDB with tenant-aware auth, CDK infrastructure and deploy scripts</p>
-        <code>usausa/template-aws-api-tenant</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-aws-api-tenant</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-aws-s3-wasm">
         <h3>Blazor WebAssembly apps on S3 + CloudFront</h3>
         <p>Cognito login, per-user S3 data, authenticated Lambda API, everything provisioned by CDK</p>
-        <code>usausa/template-aws-s3-wasm</code>
+        <div class="meta">
+          <span class="status ready">&#9989; Ready</span>
+          <code>usausa/template-aws-s3-wasm</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-aws-line-miniapp">
         <h3>LINE Mini Apps (LIFF) on AWS</h3>
         <p>Blazor WebAssembly on CloudFront + S3, LINE Login exchanged for an own JWT, per-user JSON in DynamoDB with optimistic locking, CDK</p>
-        <code>usausa/template-aws-line-miniapp</code>
+        <div class="meta">
+          <span class="status ready">&#9989; Ready</span>
+          <code>usausa/template-aws-line-miniapp</code>
+        </div>
       </a>
       <a class="card" href="https://github.com/usausa/template-azure-functions">
         <h3>Azure Functions (isolated worker)</h3>
         <p>Source-generated bindings for HTTP/Queue/Timer triggers, source-generated data access, Application Insights, tests</p>
-        <code>usausa/template-azure-functions</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-azure-functions</code>
+        </div>
       </a>
       </div>
     </section>
     <section>
-      <h2>Library</h2>
+      <h2>📦 Library</h2>
       <p class="lead">Packages</p>
       <div class="cards">
       <a class="card" href="https://github.com/usausa/template-library-with-generator">
         <h3>NuGet libraries with a source generator</h3>
         <p>Multi-target library, Roslyn generator project, tests of the generated code, the diagnostics and the incremental cache, props/targets packaging, a console to try it</p>
-        <code>usausa/template-library-with-generator</code>
+        <div class="meta">
+          <span class="status wip">&#128679; In progress</span>
+          <code>usausa/template-library-with-generator</code>
+        </div>
       </a>
       </div>
     </section>
